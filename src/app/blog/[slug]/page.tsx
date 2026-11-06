@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PostImage from "@/components/PostImage";
+import PageRibbonRight from "@/components/PageRibbonRight";
 import { posts } from "@/data/blog";
 
 export function generateStaticParams() {
@@ -24,7 +25,8 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   if (!post) notFound();
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+    <main className="page-with-ribbon mx-auto w-full max-w-3xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+      <PageRibbonRight />
       <Link
         href="/blog"
         className="animate-fade-up text-xs font-medium uppercase tracking-[0.1em] hover:text-accent"

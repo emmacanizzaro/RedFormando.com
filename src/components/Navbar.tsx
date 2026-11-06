@@ -46,7 +46,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const linkClass = (href: string) =>
-    `relative py-1.5 text-[11px] font-medium uppercase tracking-[0.08em] transition-colors hover:text-accent ${
+    `relative whitespace-nowrap py-1.5 text-[13px] font-medium uppercase tracking-[0.08em] transition-colors hover:text-accent ${
       pathname === href
         ? "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-accent"
         : ""
@@ -66,9 +66,9 @@ export default function Navbar() {
           scrolled ? "h-14" : "h-16"
         }`}
       >
-        <div className="hidden w-[110px] lg:block" aria-hidden />
+        <div className="hidden w-[120px] shrink-0 xl:block" aria-hidden />
 
-        <ul className="hidden items-center gap-6 xl:gap-9 lg:flex">
+        <ul className="hidden items-center gap-4 lg:flex xl:gap-6">
           {links.map((l) => (
             <li key={l.href}>
               <Link href={l.href} className={linkClass(l.href)}>
@@ -80,7 +80,7 @@ export default function Navbar() {
 
         <Link
           href="/#contacto"
-          className="hidden w-[110px] rounded-full border border-accent px-5 py-2 text-center text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors hover:bg-accent hover:text-background lg:block"
+          className="hidden w-[120px] shrink-0 rounded-full border border-accent px-4 py-2 text-center text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors hover:bg-accent hover:text-background lg:block"
         >
           Contacto
         </Link>
@@ -125,7 +125,7 @@ export default function Navbar() {
               <Link
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className={`block rounded-lg px-3 py-3 text-xs font-medium uppercase tracking-[0.1em] hover:bg-white/5 ${
+                className={`block rounded-lg px-3 py-3 text-sm font-medium uppercase tracking-[0.1em] hover:bg-white/5 ${
                   pathname === l.href ? "text-accent" : ""
                 }`}
               >

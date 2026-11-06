@@ -4,12 +4,12 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="hero-background relative flex flex-col items-center px-5 pt-28 pb-14 text-center sm:px-8 sm:pt-32 sm:pb-20">
-      <div className="animate-fade-up [--delay:100ms] w-full max-w-[42rem] rounded-lg bg-white px-4 py-2 shadow-xl shadow-black/20 sm:px-6 sm:py-3">
+      <div className="animate-fade-up [--delay:100ms] w-full max-w-[42rem] px-4 py-2 sm:px-6 sm:py-3">
         <Image
-          src="/redformando-logo.png"
+          src="/redformando-logo-portada.png"
           alt="RedFormando, Familia Ministerial"
-          width={1800}
-          height={278}
+          width={3052}
+          height={511}
           priority
           sizes="(min-width: 768px) 672px, calc(100vw - 56px)"
           className="h-auto w-full"

@@ -2,26 +2,41 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
 
-// Reemplazar "#" por los perfiles reales
 const socials = [
-  { name: "Facebook", href: "#", icon: "facebook" },
-  { name: "Instagram", href: "#", icon: "instagram" },
-  { name: "YouTube", href: "#", icon: "youtube" },
+  { name: "Facebook", href: "https://www.facebook.com/redformando", icon: "facebook" },
+  { name: "Instagram", href: "https://www.instagram.com/redformando/", icon: "instagram" },
+  { name: "YouTube", href: "https://www.youtube.com/@RedFormando", icon: "youtube" },
 ] as const;
 
 const areas = [
   {
     name: "Campafuego",
     links: [
-      { icon: "instagram", label: "Instagram", href: "#" },
-      { icon: "youtube", label: "YouTube", href: "#" },
+      {
+        icon: "instagram",
+        label: "Instagram",
+        href: "https://www.instagram.com/campafuego/",
+      },
+      {
+        icon: "youtube",
+        label: "YouTube",
+        href: "https://www.youtube.com/@Campafuego",
+      },
     ],
   },
   {
     name: "Edén Música",
     links: [
-      { icon: "instagram", label: "Instagram", href: "#" },
-      { icon: "youtube", label: "YouTube", href: "#" },
+      {
+        icon: "instagram",
+        label: "Instagram",
+        href: "https://www.instagram.com/edenentrenamientos/",
+      },
+      {
+        icon: "youtube",
+        label: "YouTube",
+        href: "https://www.youtube.com/@EdenEntrenamientos",
+      },
     ],
   },
 ] as const;

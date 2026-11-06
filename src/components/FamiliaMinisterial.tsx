@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PageRibbonRight from "@/components/PageRibbonRight";
 import { congregaciones, obreros } from "@/data/familia";
 
 const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
@@ -6,7 +7,7 @@ const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
 const tableWrap =
   "overflow-hidden rounded-2xl border border-white/15 bg-white/5";
 const th = "px-4 py-3 text-left text-xs font-bold text-white sm:text-sm";
-const td = "px-4 py-3 text-xs text-white/80 sm:text-sm";
+const td = "px-4 py-1 text-sm leading-relaxed text-white/80 md:py-3";
 const row = "border-t border-white/10 transition-colors hover:bg-white/5";
 
 function Contacto({ value }: { value?: string }) {
@@ -20,7 +21,8 @@ function Contacto({ value }: { value?: string }) {
 
 export default function FamiliaMinisterial() {
   return (
-    <main className="page-with-abstract-background mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+    <main className="page-with-ribbon mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+      <PageRibbonRight />
       <h1 className="animate-fade-up [--delay:100ms] text-xl font-bold uppercase tracking-wide sm:text-2xl md:text-3xl">
         Familia Ministerial
       </h1>
@@ -53,7 +55,7 @@ export default function FamiliaMinisterial() {
               {congregaciones.map((c, i) => (
                 <tr
                   key={`${c.nombre}-${i}`}
-                  className={`${row} block px-1 py-2 md:table-row md:p-0`}
+                  className={`${row} block px-1 py-3 md:table-row md:p-0`}
                 >
                   <td
                     className={`${td} block font-semibold text-white md:table-cell md:font-normal md:text-white/80`}
@@ -92,7 +94,7 @@ export default function FamiliaMinisterial() {
                 {obreros.map((o) => (
                   <tr
                     key={o.nombre}
-                    className={`${row} block px-1 py-2 md:table-row md:p-0`}
+                    className={`${row} block px-1 py-3 md:table-row md:p-0`}
                   >
                     <td
                       className={`${td} block font-semibold text-white md:table-cell md:font-normal md:text-white/80`}

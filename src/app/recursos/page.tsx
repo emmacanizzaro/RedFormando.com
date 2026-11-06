@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import AddToCartButton from "@/components/AddToCartButton";
+import PageRibbonRight from "@/components/PageRibbonRight";
 import Reveal from "@/components/Reveal";
 import { formatPrice, recursos } from "@/data/recursos";
 
@@ -16,7 +17,8 @@ export default function RecursosPage() {
   ] as const;
 
   return (
-    <main className="page-with-abstract-background mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+    <main className="page-with-ribbon mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+      <PageRibbonRight />
       <h1 className="animate-fade-up [--delay:100ms] text-xl font-bold uppercase tracking-wide sm:text-2xl md:text-3xl">
         Recursos
       </h1>
@@ -72,10 +74,10 @@ export default function RecursosPage() {
                         </div>
                       </div>
 
-                      <h3 className="mt-4 text-sm font-semibold leading-snug sm:text-base">
+                      <h3 className="mt-4 text-base font-semibold leading-snug">
                         {resource.name}
                       </h3>
-                      <p className="mt-1 text-sm font-bold text-accent sm:text-base">
+                      <p className="mt-1 text-base font-bold text-accent">
                         {formatPrice(resource.price, resource.currency)}
                       </p>
 

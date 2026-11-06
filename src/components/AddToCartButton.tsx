@@ -10,7 +10,7 @@ export default function AddToCartButton({ id }: { id: string }) {
     <button
       type="button"
       onClick={() => (inCart ? setCartOpen(true) : add(id))}
-      className={`mt-4 w-full rounded-full border border-accent px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] transition-colors ${
+      className={`mt-4 min-h-11 w-full rounded-full border border-accent px-3 py-2.5 text-sm font-semibold uppercase leading-snug tracking-[0.04em] transition-colors ${
         inCart
           ? "bg-accent text-background"
           : "hover:bg-accent hover:text-background"

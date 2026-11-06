@@ -11,10 +11,17 @@ const paragraphs = [
   "REDFORMANDO no es solo un nombre: es una identidad. Es un diseño. Es una casa para los que han sido llamados a colaborar en la Reforma que Él está produciendo en su Iglesia.",
 ];
 
-// Reemplazar "#" por los perfiles reales
 const socials = [
-  { name: "Alberto Calviño", facebook: "#", instagram: "#" },
-  { name: "Ana Calviño", facebook: "#", instagram: "#" },
+  {
+    name: "Alberto Calviño",
+    facebook: "https://www.facebook.com/alberto.calvinio",
+    instagram: "https://www.instagram.com/albertocalvinio/",
+  },
+  {
+    name: "Ana Calviño",
+    facebook: "https://www.facebook.com/adini2",
+    instagram: "https://www.instagram.com/anacalvinio/",
+  },
 ];
 
 function FacebookIcon() {

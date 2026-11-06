@@ -6,12 +6,12 @@ export type Curso = {
   href?: string;
 };
 
-// Pendiente: href (link) de cada uno
 export const cursos: Curso[] = [
   {
     id: "webinar",
     name: "WEBINAR",
     image: "/entrenamiento/webinar.webp",
+    href: "https://www.instagram.com/webinar_redformando/",
     description:
       "Formación intensiva para activar líderes en su llamado y propósito.",
   },
@@ -19,6 +19,7 @@ export const cursos: Curso[] = [
     id: "edmi",
     image: "/entrenamiento/edmi.webp",
     name: "EDMI (Escuela de Ministerio Internacional)",
+    href: "https://www.instagram.com/edm.internacional/",
     description:
       "Capacitar, formar y activar ministros competentes al diseño divino.",
   },
