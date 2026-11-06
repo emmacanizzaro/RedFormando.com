@@ -2,6 +2,7 @@
 
 :root {
   --background: #0a2a3c;
+  --footer-background: #081f30;
   --foreground: #ffffff;
   --accent: #19c3c6;
 }
@@ -14,9 +15,134 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), sans-serif;
+}
+
+.site-content {
+  flex: 1;
+  background: linear-gradient(
+    180deg,
+    #0a2a3c 0%,
+    #10364b 32%,
+    #0b2d42 68%,
+    var(--footer-background) 100%
+  );
+}
+
+.page-with-abstract-background {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-with-abstract-background::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(4 25 39 / 38%), rgb(4 25 39 / 44%)),
+    url("/section-abstract-background.jpg");
+  background-position: center;
+  background-size: cover;
+  content: "";
+}
+
+.site-footer {
+  flex-shrink: 0;
+  background-color: var(--footer-background);
+}
+
+.footer-content {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-ribbon {
+  position: absolute;
+  z-index: 0;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.footer-ribbon-left {
+  bottom: -3rem;
+  left: -3rem;
+  width: clamp(13rem, 24vw, 22rem);
+  opacity: 0.38;
+}
+
+.footer-ribbon-right {
+  right: -4rem;
+  bottom: -4rem;
+  width: clamp(15rem, 30vw, 27rem);
+  opacity: 0.45;
+}
+
+.hero-background {
+  isolation: isolate;
+  min-height: 36rem;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      ellipse 78% 48% at 50% 49%,
+      rgb(3 23 36 / 64%) 0%,
+      rgb(3 23 36 / 42%) 54%,
+      transparent 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(4 25 39 / 48%) 0%,
+      rgb(4 25 39 / 34%) 48%,
+      var(--background) 100%
+    ),
+    linear-gradient(90deg, rgb(4 25 39 / 28%), transparent 52%, rgb(4 25 39 / 10%)),
+    url("/hero-mountains.jpg");
+  background-position: center, center, center, center 58%;
+  background-size: cover;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  content: "";
+}
+
+.hero-copy {
+  text-shadow: 0 2px 12px rgb(0 0 0 / 80%);
+}
+
+@media (max-width: 640px) {
+  .page-with-abstract-background::before {
+    background-position: right center;
+  }
+
+  .footer-ribbon-left {
+    left: -5rem;
+    width: 13rem;
+    opacity: 0.25;
+  }
+
+  .footer-ribbon-right {
+    right: -6rem;
+    width: 16rem;
+    opacity: 0.28;
+  }
+
+  .hero-background {
+    min-height: 34rem;
+  }
+
+  .hero-background::before {
+    background-position: center, center, center, 53% center;
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  }
 }
 
 @keyframes fade-up {

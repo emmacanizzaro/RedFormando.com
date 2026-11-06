@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Solicitudes de recursos
+
+El carrito permite enviar una solicitud de los recursos seleccionados. No procesa pagos ni confirma compras; RedFormando debe responder para confirmar precio, disponibilidad y forma de entrega.
+
+Para activar el envío automático de solicitudes:
+
+1. Crea una cuenta de Resend y verifica el dominio del remitente.
+2. Copia `.env.example` a `.env.local`.
+3. Configura `RESEND_API_KEY` con la clave secreta de Resend y `RESEND_FROM_EMAIL` con una dirección permitida por el dominio verificado.
+4. Configura `CONTACT_EMAIL` con la dirección que recibirá las solicitudes (por defecto, `contacto@redformando.com`).
+5. Reinicia el servidor de desarrollo o vuelve a desplegar la aplicación.
+
+No publiques ni compartas `RESEND_API_KEY`. Si falta la configuración o falla el proveedor, el formulario muestra un error y ofrece un enlace alternativo de email; el carrito no se vacía.
+
 ## Getting Started
 
 First, run the development server:

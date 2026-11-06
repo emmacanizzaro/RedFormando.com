@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "./Reveal";
 
@@ -54,18 +55,33 @@ function Icon({ name }: { name: (typeof socials)[number]["icon"] }) {
 
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-white/10">
-      <Reveal>
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-3">
-          <div className="flex flex-col items-center gap-6 md:items-start">
-            <div
-              role="img"
-              aria-label="Logo RedFormando (pendiente)"
-              className="flex h-16 w-56 items-center justify-center rounded-xl border border-dashed border-white/30 text-xs uppercase tracking-widest text-white/50"
-            >
-              Logo RedFormando
-            </div>
-
+    <footer className="site-footer relative isolate overflow-hidden border-t border-white/10">
+      <Image
+        src="/footer-cinta-03.png"
+        alt=""
+        aria-hidden
+        width={700}
+        height={467}
+        className="footer-ribbon footer-ribbon-right"
+      />
+      <Image
+        src="/footer-cinta-04.png"
+        alt=""
+        aria-hidden
+        width={700}
+        height={467}
+        className="footer-ribbon footer-ribbon-left"
+      />
+      <Reveal className="footer-content">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-3 md:items-center">
+          <div className="flex flex-col items-center gap-5 text-center">
+            <Image
+              src="/redformando-footer-wordmark.png"
+              alt="RedFormando"
+              width={3052}
+              height={350}
+              className="h-auto w-56 max-w-full object-contain sm:w-64"
+            />
             <ul className="flex items-center gap-3">
               {socials.map((s) => (
                 <li key={s.name}>
@@ -98,15 +114,15 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-5 md:items-end">
+          <div className="flex flex-col items-center gap-5 text-center">
             <h3 className="text-sm font-semibold uppercase tracking-[0.1em] sm:text-base">
               Áreas Ministeriales
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-4 text-center">
               {areas.map((a) => (
                 <li
                   key={a.name}
-                  className="flex items-center justify-end gap-3"
+                  className="flex items-center justify-center gap-3"
                 >
                   <span className="text-sm font-medium sm:text-base">
                     {a.name}

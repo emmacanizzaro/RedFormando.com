@@ -6,12 +6,17 @@ import { formatPrice, recursos } from "@/data/recursos";
 
 export const metadata: Metadata = {
   title: "Recursos | RedFormando",
-  description: "Libros y manuales de la Familia Ministerial RedFormando.",
+  description: "Libros y fascículos de la Familia Ministerial RedFormando.",
 };
 
 export default function RecursosPage() {
+  const categories = [
+    { id: "libros", name: "Libros" },
+    { id: "fasciculos", name: "Fascículos" },
+  ] as const;
+
   return (
-    <main className="mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
+    <main className="page-with-abstract-background mx-auto w-full max-w-7xl px-5 pt-28 pb-16 sm:px-8 sm:pt-32 sm:pb-24">
       <h1 className="animate-fade-up [--delay:100ms] text-xl font-bold uppercase tracking-wide sm:text-2xl md:text-3xl">
         Recursos
       </h1>
@@ -20,40 +25,69 @@ export default function RecursosPage() {
         aria-hidden
       />
 
-      <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
-        {recursos.map((r, i) => (
-          <li key={r.id}>
-            <Reveal delay={(i % 4) * 120} className="flex h-full flex-col">
-              <div className="rounded-2xl border-2 border-accent/60 bg-white/5 p-2 shadow-xl shadow-black/30">
-                <div className="relative aspect-[890/768] w-full overflow-hidden rounded-xl">
-                  {r.image ? (
-                    <Image
-                      src={r.image}
-                      alt={`Portada de ${r.name}`}
-                      fill
-                      sizes="(min-width: 1024px) 280px, (min-width: 768px) 30vw, 45vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <span className="absolute inset-0 flex items-center justify-center px-4 text-center text-[10px] uppercase tracking-widest text-white/50">
-                      Portada
-                    </span>
-                  )}
-                </div>
-              </div>
+      <div className="mt-10 space-y-16">
+        {categories.map((category) => {
+          const categoryResources = recursos.filter(
+            (resource) => resource.category === category.id,
+          );
 
-              <h2 className="mt-4 text-sm font-semibold leading-snug sm:text-base">
-                {r.name}
+          return (
+            <section
+              key={category.id}
+              aria-labelledby={`category-${category.id}`}
+            >
+              <h2
+                id={`category-${category.id}`}
+                className="text-lg font-bold uppercase tracking-wide sm:text-xl"
+              >
+                {category.name}
               </h2>
-              <p className="mt-1 text-sm font-bold text-accent sm:text-base">
-                {formatPrice(r.price, r.currency)}
-              </p>
+              <div
+                className="mt-3 h-0.5 w-12 bg-accent"
+                aria-hidden
+              />
 
-              <AddToCartButton id={r.id} />
-            </Reveal>
-          </li>
-        ))}
-      </ul>
+              <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
+                {categoryResources.map((resource, index) => (
+                  <li key={resource.id}>
+                    <Reveal
+                      delay={(index % 4) * 120}
+                      className="flex h-full flex-col"
+                    >
+                      <div className="rounded-2xl border-2 border-accent/60 bg-white/5 p-2 shadow-xl shadow-black/30">
+                        <div className="relative aspect-[890/768] w-full overflow-hidden rounded-xl">
+                          {resource.image ? (
+                            <Image
+                              src={resource.image}
+                              alt={`Portada de ${resource.name}`}
+                              fill
+                              sizes="(min-width: 1024px) 280px, (min-width: 768px) 30vw, 45vw"
+                              className="object-cover"
+                            />
+                          ) : (
+                            <span className="absolute inset-0 flex items-center justify-center px-4 text-center text-[10px] uppercase tracking-widest text-white/50">
+                              Portada
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <h3 className="mt-4 text-sm font-semibold leading-snug sm:text-base">
+                        {resource.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-bold text-accent sm:text-base">
+                        {formatPrice(resource.price, resource.currency)}
+                      </p>
+
+                      <AddToCartButton id={resource.id} />
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
+      </div>
     </main>
   );
 }
