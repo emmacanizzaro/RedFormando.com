@@ -115,6 +115,7 @@ export default function Navbar() {
 
       <div
         id="mobile-menu"
+        inert={!open}
         className={`mx-3 overflow-hidden rounded-2xl border border-white/10 bg-background/95 backdrop-blur transition-all duration-300 lg:hidden ${
           open ? "max-h-96 opacity-100" : "max-h-0 border-transparent opacity-0"
         }`}

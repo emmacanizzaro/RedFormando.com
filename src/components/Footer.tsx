@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import Reveal from "./Reveal";
 
 const socials = [
@@ -118,12 +117,13 @@ export default function Footer() {
             <p className="text-sm font-semibold sm:text-base">
               ¿Quieres hacer una donación a RedFormando?
             </p>
-            <Link
-              href="/donar"
+            {/* TODO: reemplazar por la página o link de donaciones cuando exista */}
+            <a
+              href="mailto:contacto@redformando.com?subject=Quiero%20hacer%20una%20donaci%C3%B3n"
               className="rounded-full border border-accent px-8 py-3 text-xs font-semibold uppercase tracking-[0.1em] transition-colors hover:bg-accent hover:text-background"
             >
               Donar
-            </Link>
+            </a>
             <p className="text-xs text-white/60 sm:text-sm">
               REDFORMANDO | Familia Ministerial
             </p>

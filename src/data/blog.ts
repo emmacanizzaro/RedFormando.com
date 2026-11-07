@@ -21,7 +21,7 @@ export const posts: Post[] = [
   },
   {
     slug: "eclesiastes-parte-1",
-    title: "Eclesiastes parte 1",
+    title: "Eclesiastés parte 1",
     image: "/blog/eclesiastes-1.jpg",
     excerpt:
       "Resumen de ejemplo de la entrada. Se reemplaza por el texto real.",
@@ -32,7 +32,7 @@ export const posts: Post[] = [
   },
   {
     slug: "eclesiastes-parte-2",
-    title: "Eclesiastes parte 2",
+    title: "Eclesiastés parte 2",
     image: "/blog/eclesiastes-2.jpg",
     excerpt:
       "Resumen de ejemplo de la entrada. Se reemplaza por el texto real.",
@@ -43,7 +43,7 @@ export const posts: Post[] = [
   },
   {
     slug: "eclesiastes-parte-3",
-    title: "Eclesiastes parte 3",
+    title: "Eclesiastés parte 3",
     image: "/blog/eclesiastes-3.jpg",
     excerpt:
       "Resumen de ejemplo de la entrada. Se reemplaza por el texto real.",

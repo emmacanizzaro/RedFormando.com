@@ -68,6 +68,7 @@ function PurchaseRequestForm({
         <input
           id="purchase-name"
           name="name"
+          defaultValue={state.values?.name}
           type="text"
           autoComplete="name"
           required
@@ -90,6 +91,7 @@ function PurchaseRequestForm({
         <input
           id="purchase-email"
           name="email"
+          defaultValue={state.values?.email}
           type="email"
           autoComplete="email"
           required
@@ -112,6 +114,7 @@ function PurchaseRequestForm({
         <input
           id="purchase-phone"
           name="phone"
+          defaultValue={state.values?.phone}
           type="tel"
           autoComplete="tel"
           maxLength={25}
@@ -162,9 +165,11 @@ export default function CartWidget() {
   const { items, remove, clear } = useCart();
   const open = useCartOpen();
   const [requestSent, setRequestSent] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
+    closeButtonRef.current?.focus();
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setRequestSent(false);
@@ -217,7 +222,7 @@ export default function CartWidget() {
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
-        aria-hidden={!open}
+        inert={!open}
       >
         <div
           className="absolute inset-0 bg-black/60"
@@ -225,6 +230,7 @@ export default function CartWidget() {
         />
         <aside
           role="dialog"
+          aria-modal="true"
           aria-label="Carrito"
           className={`absolute top-0 right-0 flex h-full w-full max-w-md flex-col border-l border-accent/30 bg-background shadow-2xl transition-transform duration-300 ${
             open ? "translate-x-0" : "translate-x-full"
@@ -235,6 +241,7 @@ export default function CartWidget() {
               {requestSent ? "Solicitud enviada" : "Tu carrito"}
             </h2>
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={closeCart}
               aria-label="Cerrar carrito"

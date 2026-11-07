@@ -11,8 +11,25 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://redformando.com",
+  ),
   title: "RedFormando | Familia Ministerial",
-  description: "Formación para una iglesia en movimiento.",
+  description:
+    "Somos una Red, estamos en permanente Formación y creemos en una profunda Reforma en el Cuerpo de Cristo.",
+  openGraph: {
+    type: "website",
+    locale: "es_LA",
+    siteName: "RedFormando",
+    images: [
+      {
+        url: "/cielo-nuevo-tierra-nueva.png",
+        width: 1695,
+        height: 768,
+        alt: "RedFormando | Familia Ministerial",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

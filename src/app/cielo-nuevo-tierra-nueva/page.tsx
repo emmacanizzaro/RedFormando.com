@@ -4,6 +4,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Cielo Nuevo y Tierra Nueva | RedFormando",
+  description:
+    "Palabra Apostólica Bienal 2026–2027: el cielo ha invadido la tierra y la entrada de Cristo a la historia introduce un nuevo orden de existencia.",
   robots: { index: false, follow: false },
 };
 
@@ -119,7 +121,7 @@ export default function CieloNuevoTierraNueva() {
           href="/recursos"
           className="flex-1 rounded-full border border-accent px-6 py-3 text-center text-xs font-semibold uppercase tracking-[0.1em] transition-colors hover:bg-accent hover:text-background"
         >
-          Accedé al material disponible
+          Accede al material disponible
         </Link>
         <Link
           href="/recursos"

@@ -12,6 +12,7 @@ const fieldClass =
 export default function Contacto() {
   const [state, action, pending] = useActionState(sendContact, initial);
   const errors = state.errors ?? {};
+  const values = state.values;
 
   return (
     <section
@@ -66,6 +67,7 @@ export default function Contacto() {
               <input
                 id="name"
                 name="name"
+                defaultValue={values?.name}
                 type="text"
                 autoComplete="name"
                 placeholder="Nombre y Apellido"
@@ -84,6 +86,7 @@ export default function Contacto() {
               <input
                 id="email"
                 name="email"
+                defaultValue={values?.email}
                 type="email"
                 autoComplete="email"
                 placeholder="Email"
@@ -102,6 +105,7 @@ export default function Contacto() {
               <input
                 id="phone"
                 name="phone"
+                defaultValue={values?.phone}
                 type="tel"
                 autoComplete="tel"
                 placeholder="Tel. Contacto"
@@ -120,6 +124,7 @@ export default function Contacto() {
               <textarea
                 id="message"
                 name="message"
+                defaultValue={values?.message}
                 rows={5}
                 placeholder="Mensaje"
                 aria-invalid={!!errors.message}
@@ -138,8 +143,12 @@ export default function Contacto() {
               {pending ? "Enviando…" : "Enviar"}
             </button>
 
-            <p role="status" aria-live="polite" className="text-sm text-accent">
-              {state.status === "success" ? state.message : ""}
+            <p
+              role="status"
+              aria-live="polite"
+              className={`text-sm ${state.status === "error" ? "text-red-300" : "text-accent"}`}
+            >
+              {state.message ?? ""}
             </p>
           </form>
         </Reveal>

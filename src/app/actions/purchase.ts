@@ -2,6 +2,7 @@
 
 import { Resend } from "resend";
 import { recursos } from "@/data/recursos";
+import { contactEmail, escapeHtml } from "@/lib/email";
 
 export type PurchaseRequestState = {
   status: "idle" | "success" | "error";
@@ -9,22 +10,10 @@ export type PurchaseRequestState = {
   errors?: Partial<
     Record<"name" | "email" | "phone" | "items", string>
   >;
+  values?: Record<"name" | "email" | "phone", string>;
 };
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const escapeHtml = (value: string) =>
-  value.replace(
-    /[&<>"']/g,
-    (character) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[character] ?? character,
-  );
-
 export async function sendPurchaseRequest(
   _previousState: PurchaseRequestState,
   formData: FormData,
@@ -32,7 +21,7 @@ export async function sendPurchaseRequest(
   if (String(formData.get("website") ?? "").trim()) {
     return {
       status: "error",
-      message: "No pudimos procesar la solicitud. Intentá nuevamente.",
+      message: "No pudimos procesar la solicitud. Intenta nuevamente.",
     };
   }
 
@@ -44,16 +33,17 @@ export async function sendPurchaseRequest(
   const email = typeof emailEntry === "string" ? emailEntry.trim() : "";
   const phone = typeof phoneEntry === "string" ? phoneEntry.trim() : "";
   const itemsValue = typeof itemsEntry === "string" ? itemsEntry : "";
+  const values = { name, email, phone };
   const errors: NonNullable<PurchaseRequestState["errors"]> = {};
 
   if (name.length < 2 || name.length > 100) {
-    errors.name = "Ingresá tu nombre (entre 2 y 100 caracteres).";
+    errors.name = "Ingresa tu nombre (entre 2 y 100 caracteres).";
   }
   if (!emailRe.test(email) || email.length > 200) {
-    errors.email = "Ingresá un email válido.";
+    errors.email = "Ingresa un email válido.";
   }
   if (phone && !/^[0-9+()\-\s.]{6,25}$/.test(phone)) {
-    errors.phone = "Ingresá un teléfono válido.";
+    errors.phone = "Ingresa un teléfono válido.";
   }
 
   let itemIds: string[] | null = null;
@@ -76,7 +66,7 @@ export async function sendPurchaseRequest(
     new Set(itemIds).size !== itemIds.length
   ) {
     errors.items =
-      "El carrito no es válido. Actualizá la página e intentá nuevamente.";
+      "El carrito no es válido. Actualiza la página e intenta nuevamente.";
   }
 
   const selected =
@@ -87,11 +77,16 @@ export async function sendPurchaseRequest(
 
   if (products.length !== (itemIds?.length ?? 0)) {
     errors.items =
-      "El carrito no es válido. Actualizá la página e intentá nuevamente.";
+      "El carrito no es válido. Actualiza la página e intenta nuevamente.";
   }
 
   if (Object.keys(errors).length > 0) {
-    return { status: "error", message: "Revisá los datos ingresados.", errors };
+    return {
+      status: "error",
+      message: "Revisa los datos ingresados.",
+      errors,
+      values,
+    };
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -99,8 +94,9 @@ export async function sendPurchaseRequest(
   if (!apiKey || !from) {
     return {
       status: "error",
+      values,
       message:
-        "El envío automático todavía no está configurado. Podés enviar tu solicitud por email usando el enlace alternativo.",
+        "El envío automático todavía no está configurado. Puedes enviar tu solicitud por email usando el enlace alternativo.",
     };
   }
 
@@ -116,7 +112,7 @@ export async function sendPurchaseRequest(
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from,
-      to: process.env.CONTACT_EMAIL || "contacto@redformando.com",
+      to: contactEmail,
       replyTo: email,
       subject: "Nueva solicitud de recursos - RedFormando",
       text: [
@@ -149,16 +145,18 @@ export async function sendPurchaseRequest(
       console.error("No se pudo enviar la solicitud de recursos:", error);
       return {
         status: "error",
+        values,
         message:
-          "No pudimos enviar la solicitud en este momento. Intentá nuevamente o usá el enlace alternativo de email.",
+          "No pudimos enviar la solicitud en este momento. Intenta nuevamente o usa el enlace alternativo de email.",
       };
     }
   } catch (error) {
     console.error("No se pudo conectar con el proveedor de email:", error);
     return {
       status: "error",
+      values,
       message:
-        "No pudimos enviar la solicitud en este momento. Intentá nuevamente o usá el enlace alternativo de email.",
+        "No pudimos enviar la solicitud en este momento. Intenta nuevamente o usa el enlace alternativo de email.",
     };
   }
 
