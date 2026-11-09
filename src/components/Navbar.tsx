@@ -15,7 +15,6 @@ const links = [
   { href: "/", label: "Inicio" },
   { href: "/#nosotros", label: "Nosotros" },
   { href: "/familia-ministerial", label: "Familia Ministerial" },
-  { href: "/blog", label: "Blog" },
   { href: "/recursos", label: "Recursos" },
   { href: "/entrenamiento", label: "Entrenamiento" },
 ];

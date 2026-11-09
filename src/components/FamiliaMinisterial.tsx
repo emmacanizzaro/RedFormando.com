@@ -1,4 +1,3 @@
-import Image from "next/image";
 import PageRibbonRight from "@/components/PageRibbonRight";
 import { congregaciones, obreros } from "@/data/familia";
 
@@ -31,50 +30,83 @@ export default function FamiliaMinisterial() {
         aria-hidden
       />
 
-      <div className="mt-8 grid items-stretch gap-8 lg:grid-cols-[1.15fr_1fr]">
-        <div className={`animate-fade-up [--delay:300ms] ${tableWrap}`}>
-          <table className="w-full border-collapse">
-            <caption className="sr-only">Congregaciones</caption>
-            <thead className="hidden bg-white/10 md:table-header-group">
-              <tr>
-                <th scope="col" className={th}>
-                  Nombre de la Congregación
-                </th>
-                <th scope="col" className={th}>
-                  Pastores
-                </th>
-                <th scope="col" className={th}>
-                  Domicilio
-                </th>
-                <th scope="col" className={th}>
-                  Contacto
-                </th>
-              </tr>
-            </thead>
-            <tbody className="block md:table-row-group">
-              {congregaciones.map((c, i) => (
-                <tr
-                  key={`${c.nombre}-${i}`}
-                  className={`${row} block px-1 py-3 md:table-row md:p-0`}
-                >
-                  <td
-                    className={`${td} block font-semibold text-white md:table-cell md:font-normal md:text-white/80`}
-                  >
-                    {c.nombre}
-                  </td>
-                  <td className={`${td} block md:table-cell`}>{c.pastores}</td>
-                  <td className={`${td} block md:table-cell`}>{c.domicilio}</td>
-                  <td className={`${td} block md:table-cell`}>
-                    <Contacto value={c.contacto} />
-                  </td>
+      <div className="mt-8 space-y-12">
+        <section
+          aria-labelledby="congregaciones"
+          className="animate-fade-up [--delay:300ms]"
+        >
+          <h2
+            id="congregaciones"
+            className="mb-4 text-lg font-bold uppercase tracking-wide sm:text-xl"
+          >
+            Congregaciones
+          </h2>
+          <div className={tableWrap}>
+            <table className="w-full border-collapse">
+              <caption className="sr-only">Congregaciones</caption>
+              <thead className="hidden bg-white/10 md:table-header-group">
+                <tr>
+                  <th scope="col" className={th}>
+                    Nombre de la Congregación
+                  </th>
+                  <th scope="col" className={th}>
+                    Pastores
+                  </th>
+                  <th scope="col" className={th}>
+                    Domicilio
+                  </th>
+                  <th scope="col" className={th}>
+                    Contacto
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="block md:table-row-group">
+                {congregaciones.map((c, i) => (
+                  <tr
+                    key={`${c.nombre}-${i}`}
+                    className={`${row} block px-1 py-3 md:table-row md:p-0`}
+                  >
+                    <td
+                      className={`${td} block font-semibold text-white md:table-cell md:font-normal md:text-white/80`}
+                    >
+                      {c.nombre}
+                    </td>
+                    <td className={`${td} block md:table-cell`}>
+                      <span className="font-semibold text-white/60 md:hidden">
+                        Pastores:{" "}
+                      </span>
+                      {c.pastores}
+                    </td>
+                    <td className={`${td} block md:table-cell`}>
+                      <span className="font-semibold text-white/60 md:hidden">
+                        Domicilio:{" "}
+                      </span>
+                      {c.domicilio}
+                    </td>
+                    <td className={`${td} block md:table-cell`}>
+                      <span className="font-semibold text-white/60 md:hidden">
+                        Contacto:{" "}
+                      </span>
+                      <Contacto value={c.contacto} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-        <div className="flex flex-col gap-8">
-          <div className={`animate-fade-up [--delay:400ms] ${tableWrap}`}>
+        <section
+          aria-labelledby="obreros"
+          className="animate-fade-up [--delay:400ms]"
+        >
+          <h2
+            id="obreros"
+            className="mb-4 text-lg font-bold uppercase tracking-wide sm:text-xl"
+          >
+            Obreros
+          </h2>
+          <div className={tableWrap}>
             <table className="w-full border-collapse">
               <caption className="sr-only">Obreros</caption>
               <thead className="hidden bg-white/10 md:table-header-group">
@@ -102,9 +134,15 @@ export default function FamiliaMinisterial() {
                       {o.nombre}
                     </td>
                     <td className={`${td} block md:table-cell`}>
+                      <span className="font-semibold text-white/60 md:hidden">
+                        Ubicación:{" "}
+                      </span>
                       {o.ubicacion}
                     </td>
                     <td className={`${td} block md:table-cell`}>
+                      <span className="font-semibold text-white/60 md:hidden">
+                        Contacto:{" "}
+                      </span>
                       <Contacto value={o.contacto} />
                     </td>
                   </tr>
@@ -112,23 +150,7 @@ export default function FamiliaMinisterial() {
               </tbody>
             </table>
           </div>
-
-          <div className="animate-scale-in [--delay:600ms] relative min-h-[28rem] flex-1 overflow-hidden rounded-3xl rounded-br-[5rem] border border-accent/40 p-1.5 shadow-2xl shadow-black/40">
-            <div className="relative h-full min-h-[27rem] w-full overflow-hidden rounded-[1.25rem] rounded-br-[4.5rem]">
-              <Image
-                src="/familia.webp"
-                alt="Familia Ministerial RedFormando"
-                fill
-                sizes="(min-width: 1024px) 560px, 90vw"
-                className="object-cover object-[50%_100%]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-[45%] bg-gradient-to-b from-[#0a2a3c] via-[#1b4a78]/80 to-transparent"
-              />
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </main>
   );
